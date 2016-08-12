@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$structxdr_1_1xarray.html" title="xdr::xarray\&lt; std::int32\l_t, RPCBSTAT_HIGHPROC \&gt;" alt="" coords="104,5,309,47"/>
+<area shape="rect" id="node3" href="$structxdr_1_1xarray.html" title="xdr::xarray\&lt; std::uint8\l_t, N \&gt;" alt="" coords="131,71,282,112"/>
+<area shape="rect" id="node6" href="$structxdr_1_1xarray.html" title="XDR arrays are implemented using std::array as a supertype. " alt="" coords="139,137,274,163"/>
+<area shape="rect" id="node4" href="$structxdr_1_1opaque__array.html" title="xdr::opaque_array\&lt; 0 \&gt;" alt="" coords="359,53,516,79"/>
+<area shape="rect" id="node5" href="$structxdr_1_1opaque__array.html" title="XDR opaque is represented as std::uint8_t;. " alt="" coords="357,103,517,130"/>
+</map>
