@@ -15,6 +15,16 @@ if(${CMAKE_HOST_WIN32})
     )
 endif()
 
+if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    include_directories(../msvc_xdrpp/include)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GS /GL /W3 /Gy /Zc:wchar_t /Zi /Gm- /O2 /sdl /Zc:inline /fp:precise /errorReport:prompt /WX- /Zc:forScope /Gd /Oi /MD /EHsc /nologo")
+    add_definitions(
+            -D_MBCS
+            -D_CRT_SECURE_NO_WARNINGS
+    )
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /MANIFEST /LTCG:incremental /NXCOMPAT /DYNAMICBASE /DEBUG /MACHINE:X64 /OPT:REF /OPT:ICF /ERRORREPORT:PROMPT /NOLOGO /TLBID:1")
+endif()
+
 if((CMAKE_CXX_COMPILER_ID MATCHES "Clang") OR (${CMAKE_COMPILER_IS_GNUCXX}))
     include_directories(../../)
     add_definitions(-DHAVE_CONFIG_H)
@@ -51,8 +61,8 @@ set(ADD_GEN_FILES
         scan.cc
         )
 
-if(NOT ${CMAKE_COMPILER_IS_GNUCXX})
-    set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -MD -MP -MF")
-endif()
-
 add_executable(xdrc ${XDRC_SOURCE_FILES} ${OUTPUT_XDRC_FILES})
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    target_link_libraries(xdrc kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
+endif()

@@ -13,6 +13,11 @@ set(XDRPP_SOURCE_FILES
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     include_directories(../msvc_xdrpp/include)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GS /GL /W3 /Gy /Zc:wchar_t /Zc:inline /fp:precise /errorReport:prompt /WX- /Zc:forScope /Gd /Oi /MD /EHsc /nologo")
+    add_definitions(
+            -D_MBCS
+    )
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /LTCG /MACHINE:X64 /NOLOGO")
 endif()
 
 if((${CMAKE_COMPILER_IS_GNUCXX}) OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
