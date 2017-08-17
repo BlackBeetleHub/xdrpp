@@ -4,14 +4,22 @@ cmake_minimum_required(VERSION 3.2.2)
 
 project(xdrc)
 
-add_definitions(-DHAVE_CONFIG_H)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -std=c++11 -Wall -pthread")
-
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-#include_directories(../compat)
 include_directories(../)
-include_directories(../../)
-#include_directories(../msvc_xdrpp/include)
+
+if(${CMAKE_HOST_WIN32})
+    include_directories(../compat)
+    include_directories(../msvc_xdrpp/include)
+    add_definitions(
+            -D_MBCS
+            -D_CRT_SECURE_NO_WARNINGS
+    )
+endif()
+
+if((CMAKE_CXX_COMPILER_ID MATCHES "Clang") OR (${CMAKE_COMPILER_IS_GNUCXX}))
+    include_directories(../../)
+    add_definitions(-DHAVE_CONFIG_H)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -std=c++11 -Wall -pthread")
+endif()
 
 set(XDRC_SOURCE_FILES
         ../compat/getopt_long.c
