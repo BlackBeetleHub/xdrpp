@@ -1,0 +1,27 @@
+language: cpp
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - clang
+  - gcc
+
+addons:
+    apt:
+      sources:
+        - george-edison55-precise-backports
+      packages:
+        - cmake-data
+        - cmake
+        - make
+        - bison
+        - flex
+
+script:
+  # Link gcc-6 and g++-6 to their standard commands
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
