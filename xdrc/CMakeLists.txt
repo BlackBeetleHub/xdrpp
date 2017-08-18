@@ -8,7 +8,6 @@ include_directories(../)
 
 if(${CMAKE_HOST_WIN32})
     include_directories(../compat)
-    include_directories(../msvc_xdrpp/include)
     add_definitions(
             -D_MBCS
             -D_CRT_SECURE_NO_WARNINGS
